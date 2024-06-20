@@ -21,9 +21,8 @@ electricity_dataset
 ```
 
 ```{r}
-#Look at AZ dataset
-
-
+data_2014 <- read_excel ("./Data/ice_electric-2014final.xls")
+data_2014
 ```
 
 ## Including Plots
