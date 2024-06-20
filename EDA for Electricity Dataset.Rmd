@@ -9,6 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 
 library(readxl)
+library(dplyr)
 ```
 
 ## R Markdown
@@ -22,24 +23,57 @@ electricity_dataset
 head(electricity_dataset)
 ```
 
-2014 Dataset
+## 2014-2023 Dataset
 
-```{r 2014}
+```{r 2014-2015}
+
 data_2014 <- read_excel ("./Data/ice_electric-2014final.xls")
 data_2014
-summary(data_2014)
-```
-
-2015 Dataset
-
-```{r 2015}
 
 data_2015 <- read_excel ("./Data/ice_electric-2015final.xls")
 data_2015
-summary(data_2015)
+
+data_2016 <- read_excel ("./Data/ice_electric-2016final.xls")
+data_2016
+
+data_2017 <- read_excel ("./Data/ice_electric-2017final.xlsx")
+data_2017
+
+data_2018 <- read_excel ("./Data/ice_electric-2018final.xlsx")
+data_2018
+
+data_2019 <- read_excel ("./Data/ice_electric-2019final.xlsx")
+data_2019
+
+data_2020 <- read_excel ("./Data/ice_electric-2020final.xlsx")
+data_2020
+
+data_2021 <- read_excel ("./Data/ice_electric-2021final.xlsx")
+data_2021
+
+data_2022 <- read_excel ("./Data/ice_electric-2022final.xlsx")
+data_2022 <- select(data_2022, -'Trade date') # REMOVE COLUMN because it's bad
+data_2022$'Trade date' <- data_2022$`Delivery start date` - 86400  # 86400 seconds in a day
+data_2022
+
+data_2023 <- read_excel ("./Data/ice_electric-2023final.xlsx")
+data_2023
+```
+
+## Head 2014-2023
+
+```{r head}
+
+head(data_2014) # BEGIN "ERCOT North 345KV Peak"...
 head(data_2015)
-
-
+head(data_2016)
+head(data_2017)
+head(data_2018)
+head(data_2019) # END "ERCOT North 345KV Peak"
+head(data_2020) # BEGIN "Indiana Hub RT Peak"...
+head(data_2021)
+head(data_2022)
+head(data_2023) # END "Indiana Hub RT Peak"
 ```
 
 ## Including Plots
