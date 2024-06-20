@@ -18,11 +18,15 @@ Great resource for dataset: <https://www.eia.gov/electricity/wholesale/>
 ```{r Dataset}
 electricity_dataset <- read_excel("electricity-2024.xlsx")
 electricity_dataset
+
+head(electricity_dataset)
 ```
 
 ```{r}
 data_2014 <- read_excel ("./Data/ice_electric-2014final.xls")
+data_2014
 summary(data_2014)
+head(data_2014)
 ```
 
 ## Including Plots
