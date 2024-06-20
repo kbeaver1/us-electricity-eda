@@ -88,6 +88,10 @@ unique(data_2014$`Price hub`)
 # Correct "Palo Verde" to "Palo Verde Peak"
 # Change "SP-15 Gen DA LMP Peak" to "SP15 EZ Gen DA LMP Peak"
 
+data_2014 <- data_2014 %>%
+  mutate(`Price hub_2` = ifelse(`Price hub` == "Nepool MH Da LMP Peak", "Nepool MH DA LMP Peak", `Price hub`))
+data_2014
+
 # Indiana Hub RT Peak
 # Mid C Peak
 # Nepool MH DA LMP Peak
