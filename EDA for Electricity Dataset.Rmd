@@ -64,6 +64,10 @@ data_2024
 
 ## Head 2014-2024
 
+Use the following to make mass changes:
+
+1.  One quick suggestion on how to more effectively use grepl is that you can separate things out with \|. So for example, ifelse(grepl("tequi\|agave", Alcohol_Type1, ignore.case = TRUE), "TEQUILA", That should help shorten up some of your code. Similarly, use the %in% function for longer lists, e.g. ifelse(Item.Description %in% c("MAKER'S MARK CO-PACK", "HA ORPHAN BARREL BARTERHOUSE"), "BOURBON",
+
 ```{r head}
 
 #head(data_2014)
