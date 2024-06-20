@@ -29,50 +29,85 @@ data_2014 <- read_excel ("./Data/ice_electric-2014final.xls")
 # Need to correct "NP 15 EZ..." to "NP15 EZ Gen..."
 # Correct "Palo Verde" to "Palo Verde Peak"
 # Change "SP-15 Gen DA LMP Peak" to "SP15 EZ Gen DA LMP Peak"
-
+colnames(data_2014) <- gsub("\n", " ", colnames(data_2014))
+colnames(data_2014) <- gsub("  ", " ", colnames(data_2014))
+# unique(c(colnames(data_2014)))
+# data_2014
 data_2014 <- data_2014 %>%
   mutate(`Price hub` = 
            ifelse(`Price hub` == "Nepool MH Da LMP Peak", "Nepool MH DA LMP Peak",
            ifelse(`Price hub` == "Indiana Hub RT Peak", "Indiana Rt Peak",
-           ifelse(`Price hub` == "PJM-Wh Real Time Peak", "PJM Wh Real Time Peak",
+           ifelse(`Price hub` == "PJM-Wh Real Time Peak", "PJM WH Real Time Peak",
            ifelse(`Price hub` == "Mid Columbia Peak", "Mid C Peak",
            ifelse(`Price hub` == "PJM Wh Real Time Peak", "PJM WH Real Time Peak",
            ifelse(`Price hub` == "NP 15 EZ Gen DA LMP Peak", "NP15 EZ Gen DA LMP Peak",
            ifelse(`Price hub` == "Palo Verde", "Palo Verde Peak",
            ifelse(`Price hub` == "SP15 EZ Gen DA LMP Peak", "SP-15 Gen DA LMP Peak", `Price hub`)))))))))
+# data_2014 <- select(data_2014, -'Price hub_2')
+# unique(data_2014$`Price hub`)
 data_2014
 
 data_2015 <- read_excel ("./Data/ice_electric-2015final.xls")
+colnames(data_2015) <- gsub("\n", " ", colnames(data_2015))
+colnames(data_2015) <- gsub("  ", " ", colnames(data_2015))
+unique(c(colnames(data_2015)))
 data_2015
 
 data_2016 <- read_excel ("./Data/ice_electric-2016final.xls")
+colnames(data_2016) <- gsub("\n", " ", colnames(data_2016))
+colnames(data_2016) <- gsub("  ", " ", colnames(data_2016))
+unique(c(colnames(data_2016)))
 data_2016
 
 data_2017 <- read_excel ("./Data/ice_electric-2017final.xlsx")
+colnames(data_2017) <- gsub("\r\n", " ", colnames(data_2017))
+colnames(data_2017) <- gsub("  ", " ", colnames(data_2017))
+unique(c(colnames(data_2017)))
 data_2017
 
 data_2018 <- read_excel ("./Data/ice_electric-2018final.xlsx")
+colnames(data_2018) <- gsub("\r\n", " ", colnames(data_2018))
+colnames(data_2018) <- gsub("  ", " ", colnames(data_2018))
+unique(c(colnames(data_2018)))
 data_2018
 
 data_2019 <- read_excel ("./Data/ice_electric-2019final.xlsx")
+colnames(data_2019) <- gsub("\r\n", " ", colnames(data_2019))
+colnames(data_2019) <- gsub("  ", " ", colnames(data_2019))
+unique(c(colnames(data_2019)))
 data_2019
 
 data_2020 <- read_excel ("./Data/ice_electric-2020final.xlsx")
+colnames(data_2020) <- gsub("\r\n", " ", colnames(data_2020))
+colnames(data_2020) <- gsub("  ", " ", colnames(data_2020))
+unique(c(colnames(data_2020)))
 data_2020
 
 data_2021 <- read_excel ("./Data/ice_electric-2021final.xlsx")
+colnames(data_2021) <- gsub("\r\n", " ", colnames(data_2021))
+colnames(data_2021) <- gsub("  ", " ", colnames(data_2021))
+unique(c(colnames(data_2021)))
 data_2021
 
 data_2022 <- read_excel ("./Data/ice_electric-2022final.xlsx")
 data_2022 <- select(data_2022, -'Trade date') # REMOVE COLUMN because it's bad
 data_2022$'Trade date' <- data_2022$`Delivery start date` - 86400
 data_2022 <- data_2022 %>% select(1, `Trade date`, everything()) # Make 'Trade date' the 2nd column like all the other datasets
+colnames(data_2022) <- gsub("\r\n", " ", colnames(data_2022))
+colnames(data_2022) <- gsub("  ", " ", colnames(data_2022))
+unique(c(colnames(data_2022)))
 data_2022
 
 data_2023 <- read_excel ("./Data/ice_electric-2023final.xlsx")
+colnames(data_2023) <- gsub("\r\n", " ", colnames(data_2023))
+colnames(data_2023) <- gsub("  ", " ", colnames(data_2023))
+unique(c(colnames(data_2023)))
 data_2023
 
 data_2024 <- read_excel ("./Data/ice_electric-2024.xlsx")
+colnames(data_2024) <- gsub("\r\n", " ", colnames(data_2024))
+colnames(data_2024) <- gsub("  ", " ", colnames(data_2024))
+unique(c(colnames(data_2024)))
 data_2024
 ```
 
@@ -119,6 +154,51 @@ unique(data_2021$`Price hub`) # 7 Peaks
 unique(data_2022$`Price hub`) # 7 Peaks
 unique(data_2023$`Price hub`) # 7 Peaks
 unique(data_2024$`Price hub`) # 7 Peaks
+```
+
+## Comined Dataset
+
+```{r}
+
+#Verify column names
+
+head(data_2014)
+head(data_2015)
+head(data_2016)
+head(data_2017)
+head(data_2018)
+head(data_2019)
+head(data_2020)
+head(data_2021)
+head(data_2022)
+head(data_2023)
+head(data_2024)
+
+c2015 <- rbind(data_2014, data_2015)
+c2016 <- rbind(c2015, data_2016)
+c2016
+data_2017
+
+all_columns <- unique(c(colnames(c2016), colnames(data_2017)))
+all_columns
+
+unique(c(colnames(data_2014))) # "Delivery \nend date"
+unique(c(colnames(data_2015))) # "Delivery \nend date"
+unique(c(colnames(data_2016))) # "Delivery \nend date"
+unique(c(colnames(data_2017))) # "Delivery \r\nend date"
+unique(c(colnames(data_2018))) # "Delivery \r\nend date"
+unique(c(colnames(data_2019))) # "Delivery \r\nend date"
+unique(c(colnames(data_2020))) # "Delivery \r\nend date"
+unique(c(colnames(data_2021))) # "Delivery \r\nend date"
+unique(c(colnames(data_2022))) # "Delivery \r\nend date"
+unique(c(colnames(data_2023))) # "Delivery \r\nend date"
+unique(c(colnames(data_2024))) # "Delivery \r\nend date"
+
+c2017 <- rbind(c2016, data_2017)
+c2018 <- rbind(c2017, 
+  data_2018, data_2019, data_2020, data_2021, data_2022, data_2023, data_2024)
+
+combined_data <- rbind(data_2014, data_2015, data_2016, data_2017, data_2018, data_2019, data_2020, data_2021, data_2022, data_2023, data_2024)
 ```
 
 ## Including Plots
