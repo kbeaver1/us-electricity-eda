@@ -22,11 +22,24 @@ electricity_dataset
 head(electricity_dataset)
 ```
 
-```{r}
+2014 Dataset
+
+```{r 2014}
 data_2014 <- read_excel ("./Data/ice_electric-2014final.xls")
 data_2014
 summary(data_2014)
-head(data_2014)
+```
+
+2015 Dataset
+
+```{r 2015}
+
+data_2015 <- read_excel ("./Data/ice_electric-2015final.xls")
+data_2015
+summary(data_2015)
+head(data_2015)
+
+
 ```
 
 ## Including Plots
