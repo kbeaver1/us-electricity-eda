@@ -5,6 +5,12 @@ date: "2024-06-19"
 output: html_document
 ---
 
+# Electricity Wholesale Analysis (2014-2024)
+
+Resource: <https://www.eia.gov/electricity/wholesale/>
+
+## Load Library
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
@@ -12,18 +18,9 @@ library(readxl)
 library(dplyr)
 ```
 
-## R Markdown
+## 2014-2024 Datasets
 
-Great resource for dataset: <https://www.eia.gov/electricity/wholesale/>
-
-```{r Dataset}
-electricity_dataset <- read_excel("electricity-2024.xlsx")
-electricity_dataset
-
-head(electricity_dataset)
-```
-
-## 2014-2023 Dataset
+Import all datasets into their own variables.
 
 ```{r 2014-2015}
 
@@ -53,27 +50,32 @@ data_2021
 
 data_2022 <- read_excel ("./Data/ice_electric-2022final.xlsx")
 data_2022 <- select(data_2022, -'Trade date') # REMOVE COLUMN because it's bad
-data_2022$'Trade date' <- data_2022$`Delivery start date` - 86400  # 86400 seconds in a day
+data_2022$'Trade date' <- data_2022$`Delivery start date` - 86400
+data_2022 <- data_2022 %>% select(1, `Trade date`, everything()) # Make 'Trade date' the 2nd column like all the other datasets
 data_2022
 
 data_2023 <- read_excel ("./Data/ice_electric-2023final.xlsx")
 data_2023
+
+data_2024 <- read_excel ("./Data/ice_electric-2024.xlsx")
+data_2024
 ```
 
-## Head 2014-2023
+## Head 2014-2024
 
 ```{r head}
 
-head(data_2014) # BEGIN "ERCOT North 345KV Peak"...
+head(data_2014)
 head(data_2015)
 head(data_2016)
 head(data_2017)
 head(data_2018)
-head(data_2019) # END "ERCOT North 345KV Peak"
-head(data_2020) # BEGIN "Indiana Hub RT Peak"...
+head(data_2019)
+head(data_2020)
 head(data_2021)
 head(data_2022)
-head(data_2023) # END "Indiana Hub RT Peak"
+head(data_2023)
+head(data_2024)
 ```
 
 ## Including Plots
