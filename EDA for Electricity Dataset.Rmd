@@ -16,6 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(readxl)
 library(dplyr)
+library(ggplot2)
 ```
 
 ## 2014-2024 Datasets
@@ -156,31 +157,33 @@ unique(data_2023$`Price hub`) # 7 Peaks
 unique(data_2024$`Price hub`) # 7 Peaks
 ```
 
-## Comined Dataset
+## Comined Dataset 
 
 ```{r}
 
-#Verify column names
+combined_data <- rbind(data_2014, data_2015, data_2016, data_2017, data_2018, data_2019, data_2020, data_2021, data_2022, data_2023, data_2024)
+combined_data
+```
 
-head(data_2014)
-head(data_2015)
-head(data_2016)
-head(data_2017)
-head(data_2018)
-head(data_2019)
-head(data_2020)
-head(data_2021)
-head(data_2022)
-head(data_2023)
-head(data_2024)
+```{r}
 
-c2015 <- rbind(data_2014, data_2015)
-c2016 <- rbind(c2015, data_2016)
-c2016
-data_2017
+# Plot the data
 
-all_columns <- unique(c(colnames(c2016), colnames(data_2017)))
-all_columns
+combined_data$`Trade date` <- as.Date(combined_data$`Trade date`)
+
+ggplot(combined_data, aes(x = `Trade date`, y = `Daily volume MWh`)) +
+  geom_line() +
+  labs(title = "Time Series Line Graph",
+       x = "Trade Date",
+       y = "Value") +
+  theme_minimal()
+```
+
+## Fixing Hidden Characters in Columns
+
+```{r}
+
+# This showed me that there were hidden columns
 
 unique(c(colnames(data_2014))) # "Delivery \nend date"
 unique(c(colnames(data_2015))) # "Delivery \nend date"
@@ -198,7 +201,7 @@ c2017 <- rbind(c2016, data_2017)
 c2018 <- rbind(c2017, 
   data_2018, data_2019, data_2020, data_2021, data_2022, data_2023, data_2024)
 
-combined_data <- rbind(data_2014, data_2015, data_2016, data_2017, data_2018, data_2019, data_2020, data_2021, data_2022, data_2023, data_2024)
+
 ```
 
 ## Including Plots
