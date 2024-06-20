@@ -25,6 +25,7 @@ Import all datasets into their own variables.
 ```{r 2014-2015}
 
 data_2014 <- read_excel ("./Data/ice_electric-2014final.xls")
+
 data_2014
 
 data_2015 <- read_excel ("./Data/ice_electric-2015final.xls")
@@ -65,17 +66,61 @@ data_2024
 
 ```{r head}
 
-head(data_2014)
-head(data_2015)
-head(data_2016)
-head(data_2017)
-head(data_2018)
-head(data_2019)
-head(data_2020)
-head(data_2021)
-head(data_2022)
-head(data_2023)
-head(data_2024)
+#head(data_2014)
+#head(data_2015)
+#head(data_2016)
+#head(data_2017)
+#head(data_2018)
+#head(data_2019)
+#head(data_2020)
+#head(data_2021)
+#head(data_2022)
+#head(data_2023)
+#head(data_2024)
+
+unique(data_2014$`Price hub`) 
+# Need to correct "Nepool MH Da LMP Peak" to "Nepool MH DA LMP Peak"
+# Need to correct "NP 15 EZ..." to "NP15 EZ Gen..."
+# Correct "Palo Verde" to "Palo Verde Peak"
+# Change "SP-15 Gen DA LMP Peak" to "SP15 EZ Gen DA LMP Peak"
+
+# Indiana Hub RT Peak
+# Mid C Peak
+# Nepool MH DA LMP Peak
+# NP15 EZ Gen DA LMP Peak
+# Palo Verde Peak
+# PJM WH Real Time Peak
+# SP15 EZ Gen DA LMP Peak
+
+unique(data_2015$`Price hub`) 
+# 8 Peaks
+# Extra Peak from 7 Peaks below: ERCOT North 345KV Peak
+unique(data_2016$`Price hub`)
+# 8 Peaks
+# Extra Peak from 7 Peaks below: ERCOT North 345KV Peak
+unique(data_2017$`Price hub`)
+# 8 Peaks
+# Extra Peak from 7 Peaks below: ERCOT North 345KV Peak
+unique(data_2018$`Price hub`)
+# 8 Peaks
+# Extra Peak from 7 Peaks below: ERCOT North 345KV Peak
+unique(data_2019$`Price hub`)
+# 8 Peaks
+# Extra Peak from 7 Peaks below: ERCOT North 345KV Peak
+
+unique(data_2020$`Price hub`) # 7 Peaks
+unique(data_2021$`Price hub`) # 7 Peaks
+unique(data_2022$`Price hub`) # 7 Peaks
+unique(data_2023$`Price hub`) # 7 Peaks
+unique(data_2024$`Price hub`) # 7 Peaks
+
+# Indiana Hub RT Peak
+# Mid C Peak
+# Nepool MH DA LMP Peak
+# NP15 EZ Gen DA LMP Peak
+# Palo Verde Peak
+# PJM WH Real Time Peak
+# SP15 EZ Gen DA LMP Peak
 ```
 
 ## Including Plots
