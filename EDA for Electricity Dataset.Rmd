@@ -25,7 +25,17 @@ Import all datasets into their own variables.
 ```{r 2014-2015}
 
 data_2014 <- read_excel ("./Data/ice_electric-2014final.xls")
+# Need to correct "Nepool MH Da LMP Peak" to "Nepool MH DA LMP Peak"
+# Need to correct "NP 15 EZ..." to "NP15 EZ Gen..."
+# Correct "Palo Verde" to "Palo Verde Peak"
+# Change "SP-15 Gen DA LMP Peak" to "SP15 EZ Gen DA LMP Peak"
 
+data_2014 <- data_2014 %>%
+  mutate(`Price hub` = 
+           ifelse(`Price hub` == "Nepool MH Da LMP Peak", "Nepool MH DA LMP Peak",
+           ifelse(`Price hub` == "NP 15 EZ Gen DA LMP Peak", "NP15 EZ Gen DA LMP Peak",
+           ifelse(`Price hub` == "Palo Verde", "Palo Verde Peak",
+           ifelse(`Price hub` == "SP15 EZ Gen DA LMP Peak", "SP-15 Gen DA LMP Peak", `Price hub`)))))
 data_2014
 
 data_2015 <- read_excel ("./Data/ice_electric-2015final.xls")
@@ -82,15 +92,9 @@ Use the following to make mass changes:
 #head(data_2023)
 #head(data_2024)
 
-unique(data_2014$`Price hub`) 
-# Need to correct "Nepool MH Da LMP Peak" to "Nepool MH DA LMP Peak"
-# Need to correct "NP 15 EZ..." to "NP15 EZ Gen..."
-# Correct "Palo Verde" to "Palo Verde Peak"
-# Change "SP-15 Gen DA LMP Peak" to "SP15 EZ Gen DA LMP Peak"
+unique(data_2014$`Price hub`)
+# 11 peaks, down from 15
 
-data_2014 <- data_2014 %>%
-  mutate(`Price hub_2` = ifelse(`Price hub` == "Nepool MH Da LMP Peak", "Nepool MH DA LMP Peak", `Price hub`))
-data_2014
 
 # Indiana Hub RT Peak
 # Mid C Peak
