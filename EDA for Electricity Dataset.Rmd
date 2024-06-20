@@ -33,9 +33,13 @@ data_2014 <- read_excel ("./Data/ice_electric-2014final.xls")
 data_2014 <- data_2014 %>%
   mutate(`Price hub` = 
            ifelse(`Price hub` == "Nepool MH Da LMP Peak", "Nepool MH DA LMP Peak",
+           ifelse(`Price hub` == "Indiana Hub RT Peak", "Indiana Rt Peak",
+           ifelse(`Price hub` == "PJM-Wh Real Time Peak", "PJM Wh Real Time Peak",
+           ifelse(`Price hub` == "Mid Columbia Peak", "Mid C Peak",
+           ifelse(`Price hub` == "PJM Wh Real Time Peak", "PJM WH Real Time Peak",
            ifelse(`Price hub` == "NP 15 EZ Gen DA LMP Peak", "NP15 EZ Gen DA LMP Peak",
            ifelse(`Price hub` == "Palo Verde", "Palo Verde Peak",
-           ifelse(`Price hub` == "SP15 EZ Gen DA LMP Peak", "SP-15 Gen DA LMP Peak", `Price hub`)))))
+           ifelse(`Price hub` == "SP15 EZ Gen DA LMP Peak", "SP-15 Gen DA LMP Peak", `Price hub`)))))))))
 data_2014
 
 data_2015 <- read_excel ("./Data/ice_electric-2015final.xls")
@@ -80,21 +84,25 @@ Use the following to make mass changes:
 
 ```{r head}
 
-#head(data_2014)
-#head(data_2015)
-#head(data_2016)
-#head(data_2017)
-#head(data_2018)
-#head(data_2019)
-#head(data_2020)
-#head(data_2021)
-#head(data_2022)
-#head(data_2023)
-#head(data_2024)
+# 8 Peaks (2014-2019):
+#
+# "ERCOT North 345KV Peak"  
+# "Indiana Rt Peak"         
+# "Mid C Peak"              
+# "Nepool MH DA LMP Peak"   
+# "NP15 EZ Gen DA LMP Peak"
+# "Palo Verde Peak"         
+# "PJM WH Real Time Peak"
+# "SP-15 Gen DA LMP Peak"
 
 unique(data_2014$`Price hub`)
-# 11 peaks, down from 15
+unique(data_2015$`Price hub`) 
+unique(data_2016$`Price hub`)
+unique(data_2017$`Price hub`)
+unique(data_2018$`Price hub`)
+unique(data_2019$`Price hub`)
 
+# 7 Peaks (2020-2024):
 
 # Indiana Hub RT Peak
 # Mid C Peak
@@ -103,36 +111,14 @@ unique(data_2014$`Price hub`)
 # Palo Verde Peak
 # PJM WH Real Time Peak
 # SP15 EZ Gen DA LMP Peak
-
-unique(data_2015$`Price hub`) 
-# 8 Peaks
-# Extra Peak from 7 Peaks below: ERCOT North 345KV Peak
-unique(data_2016$`Price hub`)
-# 8 Peaks
-# Extra Peak from 7 Peaks below: ERCOT North 345KV Peak
-unique(data_2017$`Price hub`)
-# 8 Peaks
-# Extra Peak from 7 Peaks below: ERCOT North 345KV Peak
-unique(data_2018$`Price hub`)
-# 8 Peaks
-# Extra Peak from 7 Peaks below: ERCOT North 345KV Peak
-unique(data_2019$`Price hub`)
-# 8 Peaks
-# Extra Peak from 7 Peaks below: ERCOT North 345KV Peak
+# 
+# Missing is "ERCOT North 345KV Peak"
 
 unique(data_2020$`Price hub`) # 7 Peaks
 unique(data_2021$`Price hub`) # 7 Peaks
 unique(data_2022$`Price hub`) # 7 Peaks
 unique(data_2023$`Price hub`) # 7 Peaks
 unique(data_2024$`Price hub`) # 7 Peaks
-
-# Indiana Hub RT Peak
-# Mid C Peak
-# Nepool MH DA LMP Peak
-# NP15 EZ Gen DA LMP Peak
-# Palo Verde Peak
-# PJM WH Real Time Peak
-# SP15 EZ Gen DA LMP Peak
 ```
 
 ## Including Plots
