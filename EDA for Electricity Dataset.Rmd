@@ -31,26 +31,19 @@ This report has analyzed the past 10 years of daily spot price data for Palo Ver
 
 # Code
 
-```{r setup, include=FALSE, message=FALSE, warning=FALSE, echo=FALSE, results='asis'}
-knitr::opts_chunk$set(echo = TRUE)
-
+```{r setup, message=FALSE, warning=FALSE, results='hide'}
+# Import libraries
 library(readxl)
 library(dplyr)
 library(ggplot2)
 ```
 
-## 
-
-```{r import weather dataset, message=FALSE, warning=FALSE}
-
-weather_data <- read.csv ("./Data/weather_dataset.csv")
-
-
+```{r import weather dataset, message=FALSE, warning=FALSE, results='hide'}
+# Import weather data
+weather_data <- read.csv ("./Data/phx_weather_2021.csv")
 ```
 
-## Import Electricity Hub Datasets (2014-2024) 
-
-```{r 2014-2015, message=FALSE, warning=FALSE, results='asis'}
+```{r 2014-2015, message=FALSE, warning=FALSE, results='hide'}
 
 data_2014 <- read_excel ("./Data/ice_electric-2014final.xls")
 
@@ -140,7 +133,7 @@ data_2024
 
 Use the following to make mass changes:
 
-```{r head, include=FALSE, message=FALSE, warning=FALSE, echo=FALSE, results='asis'}
+```{r head, message=FALSE, warning=FALSE, results='hide'}
 
 # 8 Peaks (2014-2019):
 #
@@ -181,13 +174,13 @@ unique(data_2024$`Price hub`) # 7 Peaks
 
 ## Combined Dataset
 
-```{r combined dataset, include=FALSE, message=FALSE, warning=FALSE, echo=FALSE, results='asis'}
+```{r combined dataset, message=FALSE, warning=FALSE, results='hide'}
 
 combined_data <- rbind(data_2014, data_2015, data_2016, data_2017, data_2018, data_2019, data_2020, data_2021, data_2022, data_2023, data_2024)
 combined_data
 ```
 
-```{r plots, include=FALSE, message=FALSE, warning=FALSE, echo=FALSE, results='asis'}
+```{r plots, message=FALSE, warning=FALSE, results='hide'}
 
 # Plot the data
 
@@ -240,7 +233,7 @@ Some additional factors to look at:
 
 ## Fixing Hidden Characters in Columns
 
-```{r hidden characters, include=FALSE, message=FALSE, warning=FALSE, echo=FALSE, results='asis'}
+```{r hidden characters, message=FALSE, warning=FALSE, results='hide'}
 
 # This showed me that there were hidden columns
 
@@ -256,13 +249,3 @@ unique(c(colnames(data_2022))) # "Delivery \r\nend date"
 unique(c(colnames(data_2023))) # "Delivery \r\nend date"
 unique(c(colnames(data_2024))) # "Delivery \r\nend date"
 ```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
