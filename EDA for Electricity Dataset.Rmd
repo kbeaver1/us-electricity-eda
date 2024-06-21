@@ -2,7 +2,9 @@
 title: "EDA for Electricity Dataset"
 author: "Kendall Beaver"
 date: "2024-06-19"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 # Electricity Wholesale Analysis (2014-2024)
@@ -11,7 +13,7 @@ Resource: <https://www.eia.gov/electricity/wholesale/>
 
 ## Load Library
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, message=FALSE, warning=FALSE, echo=FALSE, results='asis'}
 knitr::opts_chunk$set(echo = TRUE)
 
 library(readxl)
@@ -159,13 +161,13 @@ unique(data_2024$`Price hub`) # 7 Peaks
 
 ## Comined Dataset
 
-```{r}
+```{r combined dataset}
 
 combined_data <- rbind(data_2014, data_2015, data_2016, data_2017, data_2018, data_2019, data_2020, data_2021, data_2022, data_2023, data_2024)
 combined_data
 ```
 
-```{r}
+```{r plots}
 
 # Plot the data
 
@@ -216,7 +218,7 @@ Some additional factors to look at:
 
 ## Fixing Hidden Characters in Columns
 
-```{r}
+```{r hidden characters}
 
 # This showed me that there were hidden columns
 
