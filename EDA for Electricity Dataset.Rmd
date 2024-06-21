@@ -188,17 +188,31 @@ head(palo_verde_peak)
 # 2022-08-31	
 # 2020-09-03
 
-# Let's look at month of first result:
-palo_verde_peak %>% filter()
+# Let's look at June 2021:
+pvp_june_2021 <- palo_verde_peak %>%
+  filter(`Trade date` > as.Date('2021-06-01') & `Trade date` < as.Date('2021-06-30'))
+pvp_june_2021
 
-
-ggplot(palo_verde_peak, aes(x = `Trade date`, y = Change)) +
+ggplot(pvp_june_2021, aes(x = `Trade date`, y = Change)) +
   geom_line() +
   labs(title = "Time Series Line Graph",
-       x = "High Price",
+       x = "Change in Price",
        y = "Value") +
   theme_minimal()
+
+# Let's look at August & September 2020:
+pvp_aug_2020 <- palo_verde_peak %>%
+  filter(`Trade date` > as.Date('2020-08-01') & `Trade date` < as.Date('2020-08-31'))
+pvp_aug_2020
+
+pvp_sept_2020 <- palo_verde_peak %>%
+  filter(`Trade date` > as.Date('2020-09-01') & `Trade date` < as.Date('2020-09-30'))
+pvp_sept_2020
 ```
+
+Some additional factors to look at:
+
+-   \$84 million in higher wholesale short-term sales primarily due to: (i) an increase in price and sales volume; and (ii) an increase in capacity sales to affiliates for a tolling PPA (Power Purchase Agreement) entered into in June 2021; (<https://www.sec.gov/ix?doc=/Archives/edgar/data/100122/000010012222000020/tep-20211231.htm>)
 
 ## Fixing Hidden Characters in Columns
 
