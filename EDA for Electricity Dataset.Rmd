@@ -169,12 +169,33 @@ combined_data
 
 # Plot the data
 
+# Make sure the dates are in the correct format
 combined_data$`Trade date` <- as.Date(combined_data$`Trade date`)
 
-ggplot(combined_data, aes(x = `Trade date`, y = `Daily volume MWh`)) +
+# Filter dataset for "Palo Verde Peak"
+palo_verde_peak <- combined_data %>% filter(`Price hub` == 'Palo Verde Peak')
+
+# Rearrange "Change" column from largest to smallest
+palo_verde_peak %>% arrange(desc(Change))
+
+# Look at top results
+head(palo_verde_peak)
+# Top 6 trade dates are:
+# 2021-06-16
+# 2020-08-17
+# 2023-08-15
+# 2022-09-05
+# 2022-08-31	
+# 2020-09-03
+
+# Let's look at month of first result:
+palo_verde_peak %>% filter()
+
+
+ggplot(palo_verde_peak, aes(x = `Trade date`, y = Change)) +
   geom_line() +
   labs(title = "Time Series Line Graph",
-       x = "Trade Date",
+       x = "High Price",
        y = "Value") +
   theme_minimal()
 ```
