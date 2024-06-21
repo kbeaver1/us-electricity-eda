@@ -157,7 +157,7 @@ unique(data_2023$`Price hub`) # 7 Peaks
 unique(data_2024$`Price hub`) # 7 Peaks
 ```
 
-## Comined Dataset 
+## Comined Dataset
 
 ```{r}
 
@@ -196,12 +196,6 @@ unique(c(colnames(data_2021))) # "Delivery \r\nend date"
 unique(c(colnames(data_2022))) # "Delivery \r\nend date"
 unique(c(colnames(data_2023))) # "Delivery \r\nend date"
 unique(c(colnames(data_2024))) # "Delivery \r\nend date"
-
-c2017 <- rbind(c2016, data_2017)
-c2018 <- rbind(c2017, 
-  data_2018, data_2019, data_2020, data_2021, data_2022, data_2023, data_2024)
-
-
 ```
 
 ## Including Plots
