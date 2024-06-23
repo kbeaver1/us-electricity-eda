@@ -27,7 +27,7 @@ The [Intercontinental Exchange (ICE)](https://www.theice.com/index) has provided
 
 8.  SP-15 Gen DA LMP Peak
 
-This report has analyzed the past 10 years of daily spot price data for Palo Verde Peak and discovered that daily
+This report has analyzed the past 10 years of daily spot price data for Palo Verde Peak and discovered that trades are affected primarily by change in temperature, energy consumption, but in one rare case, a PPA.
 
 # Code
 
