@@ -9,7 +9,11 @@ output:
 
 # Overview
 
-This report was created as background research in applying for an business internship with the Tucson Electric Power (TEP) company in 2024. To understand more about the commodity price environment that TEP operates in, I gathered wholesale daily spot prices from the U.S. Energy Information Administration from 2014-2024. Spot prices are highly correlated with changes in temperature and energy consumption, but in one rare case was significantly affected by a Power Purchase Agreement (PPA) in June 2021 that resulted in $84 million short-term sales.
+This report was created as background research in applying for an business internship with the Tucson Electric Power (TEP) company in 2024. To understand more about the commodity price environment that TEP operates in and what affected their sales the most, I gathered wholesale daily spot prices from the U.S. Energy Information Administration from 2014-2024. 
+
+I discovered that spot prices are highly correlated with changes in temperature and energy consumption, which is how the electric industry operates, but in one rare case I discovered that an $84 million dollar Power Purchase Agreement in June 2021 affected short-term sales for the Palo Verde Peak (PVP), one of the largest electric hubs within TEP's electric system. The figure represents the change in PVP spot prices from June 1-30, 2021. 
+
+
 
 Resources: 
 
@@ -49,6 +53,7 @@ After analyzing the past 10 years of daily spot price data for Palo Verde Peak a
 library(readxl)
 library(dplyr)
 library(ggplot2)
+library(scales)
 ```
 
 ```{r import weather dataset, message=FALSE, warning=FALSE, results='hide'}
@@ -223,10 +228,21 @@ pvp_june_2021
 
 ggplot(pvp_june_2021, aes(x = `Trade date`, y = Change)) +
   geom_line() +
-  labs(title = "Time Series Line Graph - June 2021",
-       x = "Change in Price",
-       y = "Value") +
+  labs(title = "",
+       x = "",
+       y = "Spot Price") +
   theme_minimal()
+
+
+ggplot(pvp_june_2021, aes(x = `Trade date`, y = Change)) +
+  geom_line() +
+  scale_y_continuous(labels = label_dollar(accuracy = 0.01)) +
+  labs(title = "",
+       x = "",
+       y = "Spot Price") +
+  theme_minimal()
+
+ggsave("images/spot_price_plot.png", width = 8, height = 5, dpi = 300)
 
 # Let's look at August & September 2020:
 pvp_aug_2020 <- palo_verde_peak %>%
