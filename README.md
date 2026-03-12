@@ -1,2 +1,2 @@
 # us-electricity-eda
-EDA on Electricity 2024 dataset from US EIA
+This report was created as background research in applying for an business internship with the Tucson Electric Power (TEP) company in 2024. To understand more about the commodity price environment that TEP operates in, I gathered wholesale daily spot prices from the U.S. Energy Information Administration from 2014-2024. Spot prices are highly correlated with changes in temperature and energy consumption, but in one rare case was significantly affected by a Power Purchase Agreement (PPA) in June 2021 that resulted in $84 million short-term sales.
