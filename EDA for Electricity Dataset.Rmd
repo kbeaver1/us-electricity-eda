@@ -9,7 +9,11 @@ output:
 
 # Overview
 
-The [Intercontinental Exchange (ICE)](https://www.theice.com/index) has provided the U.S. Energy Information Administration selected wholesale daily spot price data from 2001-2024 (<https://www.eia.gov/electricity/wholesale/>) for 8 electricity hubs:
+This report was created as background research in applying for an business internship with the Tucson Electric Power (TEP) company in 2024. To understand more about the commodity price environment that TEP operates in, I 
+
+I found daily spot price data from 2014-2024 for the 
+
+The [Intercontinental Exchange (ICE)](https://www.theice.com/index) provided the U.S. Energy Information Administration selected wholesale daily spot price data from 2001-2024 (<https://www.eia.gov/electricity/wholesale/>) for 8 electricity hubs:
 
 1.  ERCOT North 345KV Peak
 
@@ -27,7 +31,7 @@ The [Intercontinental Exchange (ICE)](https://www.theice.com/index) has provided
 
 8.  SP-15 Gen DA LMP Peak
 
-This report has analyzed the past 10 years of daily spot price data for Palo Verde Peak and discovered that trades are affected primarily by change in temperature, energy consumption, and in one rare case, a PPA.
+After analyzing the past 10 years of daily spot price data for Palo Verde Peak and discovered that spot prices are correlated with changes in temperature and energy consumption, as all hubs has always been affected by these factors, but Palo Verde was significantly affected by a Power Purchase Agreement (PPA).
 
 # Code
 
